@@ -1,11 +1,11 @@
 import PostList from "./components/PostList";
-import TodoList from "./components/TodoList";
+// import TodoList from "./components/TodoList";
 
 
 function App() {
   return (
     <>
-    <TodoList></TodoList>
+    {/* <TodoList></TodoList> */}
     <PostList></PostList>
     </>
   )
