@@ -1,4 +1,4 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 interface Todo {
@@ -8,29 +8,25 @@ interface Todo {
   completed: boolean;
 }
 
-interface query {
-    page: number,
+interface Query {
     pageSize: number;
 }
 
-const useTodos = (query: query) => {
-    return useQuery({
+const useTodos = (query: Query) =>
+    useInfiniteQuery<Todo[], Error>( {
         queryKey: ['todos',query],
-        queryFn: () => axios.get<Todo[]>('https://jsonplaceholder.typicode.com/todos', {
-            params: {
-                _start: (query.page - 1) * query.pageSize,
-                _limit: query.pageSize
-            }
-        })
-        .then( res => res.data ),
-        staleTime: 10 * 1000,
-        refetchOnWindowFocus: false,
-        refetchOnMount: false,
-        refetchOnReconnect: false,
-        retry: 3,
-        gcTime: 300_000, // 5 min
-        placeholderData: keepPreviousData,
-    });
-}
+        queryFn: ({ pageParam=1} ) =>
+            axios.get<Todo[]>('https://jsonplaceholder.typicode.com/todos', {
+                params: {
+                    _start: (pageParam as number - 1) * query.pageSize,
+                    _limit: query.pageSize
+                }
+            }).then(res => res.data)
+        ,
+        initialPageParam: 1,
+        getNextPageParam: (lastPage, allPages) => {
+            return lastPage.length > 0 ? allPages.length + 1 : undefined
+        }
+    } )
 
 export default useTodos;
