@@ -1,9 +1,7 @@
 // import { useQuery } from '@tanstack/react-query';
 // import axios from 'axios';
 // import React, { useEffect, useState } from 'react';
-import { useState } from 'react';
 import useTodos from '../hooks/useTodos';
-import React from 'react';
 
 // interface Todo {
 //   id: number;
@@ -31,9 +29,8 @@ const TodoList = () => {
     //     staleTime: 10 * 1000
     // });
 
-    const pageSize = 10;
     // creating a reusable custom hook useTodos
-    const {data, error, isLoading, fetchNextPage, isFetchingNextPage} = useTodos({pageSize});
+    const {data, error, isLoading} = useTodos();
 
     if (isLoading)
         return <h1>Loading</h1>
@@ -44,13 +41,10 @@ const TodoList = () => {
   return (
     <>
     <ul className="list-group">
-      {data?.pages.map( (page, index) => <React.Fragment key={index}>
-        {page.map( (todo) => <li key={todo.id} className="list-group-item">
+      {data?.map( todo => <li key={todo.id} className="list-group-item">
           {todo.title}
-        </li> )}
-      </React.Fragment> )}
+        </li>)}
     </ul>
-    <button className="btn btn-primary m-2" onClick={() => fetchNextPage()}>{isFetchingNextPage ? 'Loading...' : 'Load More'}</button>
     </>
   );
 };
