@@ -6,9 +6,11 @@ import { useReducer } from "react";
 import HomePage from "./components/HomePage";
 import NavBar from "./components/NavBar";
 import taskReducer from "./reducers/TaskReducer";
-import UserContext from "./contexts/UserContext";
-import loginReducer from "./reducers/LoginReducer";
+// import UserContext from "./contexts/UserContext";
+// import loginReducer from "./reducers/LoginReducer";
 import TaskContext from "./contexts/TaskContext";
+import UserProvider from "./components/UserProvider";
+import TaskProvider from "./components/TaskProvider";
 
 // import LoginStatus from "./components/LoginStatus";
 
@@ -17,17 +19,21 @@ import TaskContext from "./contexts/TaskContext";
 
 
 function App() {
-  const [tasks, dispatch] = useReducer(taskReducer, []);
-    const [user, dispatchUser] = useReducer(loginReducer, '');
+  // const [tasks, dispatch] = useReducer(taskReducer, []);
+    // const [user, dispatchUser] = useReducer(loginReducer, '');
   
   return (
     <>
-    <UserContext.Provider value={{user, dispatchUser}}>
-      <TaskContext.Provider value={{tasks, dispatch}}>
+    {/* <UserContext.Provider value={{user, dispatchUser}}> */}
+    <UserProvider>
+      {/* <TaskContext.Provider value={{tasks, dispatch}}> */}
+      <TaskProvider>
       <NavBar />
       <HomePage />
-      </TaskContext.Provider>
-    </UserContext.Provider>
+      </TaskProvider>
+      {/* </TaskContext.Provider> */}
+      </UserProvider>
+    {/* </UserContext.Provider> */}
     </>
   )
 }

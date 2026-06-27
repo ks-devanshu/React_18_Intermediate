@@ -5,7 +5,7 @@ import React from "react";
 
 interface UserContextType {
     user: string;
-    dispatchUser: Dispatch<AuthAction>;
+    dispatch: Dispatch<AuthAction>;
 }
 
 const UserContext = React.createContext<UserContextType>({} as UserContextType);

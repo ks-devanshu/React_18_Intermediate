@@ -8,7 +8,7 @@ import UserContext from "../contexts/UserContext";
 const LoginStatus = () => {
 //   const [user, setUser] = useState('');
     // const [user, dispatch] = useReducer(loginReducer, '');
-    const {user, dispatchUser} = useContext(UserContext);
+    const {user, dispatch} = useContext(UserContext);
 
   if (user)
     return (
@@ -17,7 +17,7 @@ const LoginStatus = () => {
           <span className="mx-2">{user}</span>
           <a onClick={() => 
             // setUser('')
-            dispatchUser({type:'LOGOUT'})
+            dispatch({type:'LOGOUT'})
             } href="#">
             Logout
           </a>
@@ -28,7 +28,7 @@ const LoginStatus = () => {
     <div>
       <a onClick={() => 
     //   setUser('mosh.hamedani')
-        dispatchUser({type:'LOGIN',user:'ks.devanshu'})
+        dispatch({type:'LOGIN',user:'ks.devanshu'})
       } href="#">
         Login
       </a>
