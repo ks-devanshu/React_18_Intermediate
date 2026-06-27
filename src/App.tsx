@@ -2,16 +2,32 @@
 // import TodoList from "./components/TodoList";
 // import TodoForm from "./components/TodoForm";
 
-import LoginStatus from "./components/LoginStatus";
+import { useReducer } from "react";
+import HomePage from "./components/HomePage";
+import NavBar from "./components/NavBar";
+import taskReducer from "./reducers/TaskReducer";
+import UserContext from "./contexts/UserContext";
+import loginReducer from "./reducers/LoginReducer";
+import TaskContext from "./contexts/TaskContext";
+
+// import LoginStatus from "./components/LoginStatus";
 
 // import Counter from "./components/Counter";
 // import TaskList from "./components/TaskList";
 
 
 function App() {
+  const [tasks, dispatch] = useReducer(taskReducer, []);
+    const [user, dispatchUser] = useReducer(loginReducer, '');
+  
   return (
     <>
-    <LoginStatus />
+    <UserContext.Provider value={{user, dispatchUser}}>
+      <TaskContext.Provider value={{tasks, dispatch}}>
+      <NavBar />
+      <HomePage />
+      </TaskContext.Provider>
+    </UserContext.Provider>
     </>
   )
 }
