@@ -3,7 +3,7 @@
 // import { useContext, useReducer } from "react";
 // import loginReducer from "../reducers/LoginReducer";
 import { useContext } from "react";
-import UserContext from "../contexts/UserContext";
+import UserContext from "./UserContext";
 
 const LoginStatus = () => {
 //   const [user, setUser] = useState('');

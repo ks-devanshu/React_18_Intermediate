@@ -1,5 +1,5 @@
 import type { Dispatch } from "react";
-import type { AuthAction } from "../reducers/LoginReducer";
+import type { AuthAction } from "./UserProvider";
 import React from "react";
 
 
