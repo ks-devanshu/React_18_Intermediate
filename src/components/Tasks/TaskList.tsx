@@ -1,27 +1,17 @@
-// import { useContext, useReducer, useState } from 'react';
-// import taskReducer from '../reducers/TaskReducer';
 import { useContext } from 'react';
-// import TaskContext from '../contexts/TaskContext';
-// import UserContext from '../../contexts/UserContext';
 import TaskContext from './TaskContext';
-
-// interface Task {
-//   id: number;
-//   title: string;
-// }
+import useUserAuth from '../AuthUser/storeUserAuth';
 
 const useTasks = () => useContext(TaskContext);
 
 const TaskList = () => {
-//   const [tasks, setTasks] = useState<Task[]>([]);
-    // const [tasks, dispatch] = useReducer(taskReducer, []);
-    // const {tasks, dispatch} = useContext(TaskContext);
     const {tasks, dispatch} = useTasks();
-    // const {user} = useContext(UserContext);
+    const {user} = useUserAuth();
 
   return (
     <>
       {/* <p>User : {user}</p> */}
+      <h3>{user}</h3>
       <button
         onClick={() =>
         //   setTasks([

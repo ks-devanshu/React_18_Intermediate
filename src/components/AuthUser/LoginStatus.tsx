@@ -1,24 +1,14 @@
-// import { useState } from "react";
-
-// import { useContext, useReducer } from "react";
-// import loginReducer from "../reducers/LoginReducer";
-import { useContext } from "react";
-import UserContext from "./UserContext";
+import useUserAuth from "./storeUserAuth";
 
 const LoginStatus = () => {
-//   const [user, setUser] = useState('');
-    // const [user, dispatch] = useReducer(loginReducer, '');
-    const {user, dispatch} = useContext(UserContext);
+    const {user, login, logout} = useUserAuth();
 
   if (user)
     return (
       <>
         <div>
           <span className="mx-2">{user}</span>
-          <a onClick={() => 
-            // setUser('')
-            dispatch({type:'LOGOUT'})
-            } href="#">
+          <a onClick={() => logout()} href="#">
             Logout
           </a>
         </div>
@@ -26,10 +16,7 @@ const LoginStatus = () => {
     );
   return (
     <div>
-      <a onClick={() => 
-    //   setUser('mosh.hamedani')
-        dispatch({type:'LOGIN',user:'ks.devanshu'})
-      } href="#">
+      <a onClick={() => login('ks.devanshu')} href="#">
         Login
       </a>
     </div>

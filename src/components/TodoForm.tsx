@@ -35,7 +35,7 @@ const TodoForm = () => {
         onSuccess: (savedTodo, newTodo) => {
             queryClient.setQueryData<Todo[]>(['todos'], todos => todos?.map( todo => todo === newTodo ? savedTodo : todo));
         },
-        onError: (error, newTodo, TodoContext) => {
+        onError: (_error, _newTodo, TodoContext) => {
             queryClient.setQueryData<Todo[]>(['todos'], TodoContext?.previousData)
         }
   });
