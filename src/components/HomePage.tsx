@@ -1,7 +1,17 @@
-import TaskList from './Tasks/TaskList';
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
-  return <TaskList />;
+  return (
+    <>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+        Incidunt, mollitia!
+      </p>
+      {/* <a href="/users">Users</a> */}
+      <Link to='/users'>Users</Link><br />
+      <Link to='/form'>Form</Link>
+    </>
+  );
 };
 
 export default HomePage;
